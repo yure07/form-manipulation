@@ -23,6 +23,17 @@ const FormContainer = styled.article`
   height: 500px;
   background-color: #0ABAB5;
   box-shadow: 5px 5px 10px #000;
+
+  @media (max-width: 768px){
+    flex-direction: column;
+    width: 80%;
+    height: auto;
+    padding: 40px 0;
+  }
+
+  @media (max-width: 600px){
+    padding: 20px 0;
+  }
 `
 
 const SectionImgText = styled.section`
@@ -35,6 +46,12 @@ const SectionImgText = styled.section`
 const ImgProduct = styled.img`
   width: 100%;
   height: 200px;
+
+  @media (max-width: 600px){
+    height: 150px;
+    width: 150px;
+    align-self: center;
+  }
 `
 
 const TextRegisterProduct = styled.h1`
@@ -42,6 +59,10 @@ const TextRegisterProduct = styled.h1`
   line-height: 150%;
   color: #FFF;
   font-weight: 900;
+
+  @media (max-width: 600px){
+    font-size: 24px;
+  }
 `
 
 const Form = styled.form`
@@ -49,6 +70,10 @@ const Form = styled.form`
   flex-direction: column;
   justify-content: space-between;
   height: 80%;
+
+  @media (max-width: 600px){
+    align-items: center;
+  }
 `
 
 const Input = styled.input`
@@ -59,6 +84,10 @@ const Input = styled.input`
   padding: 0 8px;
   font-family: 'Montserrat';
   font-size: 16px;
+
+  @media (max-width: 600px){
+    width: 280px;
+  }
 `
 const InputImg = styled(Input)`
   border: 0;
@@ -88,6 +117,10 @@ const ButtonForm = styled.button`
   &:hover{
     transform: scale(1.02);
     background-color: #0ABAB5
+  }
+
+  @media (max-width: 600px){
+    width: 200px;
   }
 `
 
