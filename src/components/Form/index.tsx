@@ -1,7 +1,6 @@
 import axios from "axios";
-import { Formik, Form, Field, FormikProps, FieldProps, ErrorMessage, useField } from "formik";
-import { read } from "fs";
-import React, { useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import React, { ChangeEvent, useState } from "react";
 import styled from "styled-components";
 
 const FormStyled = styled(Form)`
@@ -91,8 +90,9 @@ const FormFormik:React.FC = () => {
         <Formik 
           initialValues={{name: '', brand: '', value: '', category: '', file: ''}}
           onSubmit={async (values, {resetForm, setSubmitting }) => {
+            console.log(values)
             try{
-              const response = await axios.post('https://apigenerator.dronahq.com/api/Kxyz66cp/products_exercise', {
+              await axios.post('https://apigenerator.dronahq.com/api/Kxyz66cp/products_exercise', {
                 name: values.name,
                 brand: values.brand,
                 value: values.value,
@@ -107,7 +107,7 @@ const FormFormik:React.FC = () => {
           }} 
           validate={(values) => {
             const errors:FormValues = {}
-            const regex:RegExp = /[!@#$%^&*()_+{}\[\]:;<>,.?~\/-]|\s/
+            const regex:RegExp = /[!@#$%^&*()_+{}\[\]:;<>,.?~\/-]/
             const value:number = Number(values.value)
 
             if(regex.test(values.name)) errors.name = 'Nome não pode incluir caracteres especiais.'
@@ -117,7 +117,7 @@ const FormFormik:React.FC = () => {
             return errors
           }}
         >
-          {({ isSubmitting, setFieldValue }) => (
+          {({ isSubmitting }) => (
             <FormStyled>
               <label>
                 <LabelInput>Nome</LabelInput>
@@ -158,20 +158,9 @@ const FormFormik:React.FC = () => {
               <label>
                 <LabelInput>Imagem</LabelInput>
                 <input
-                  name="file"
+                  name='file'
                   type="file"
-                  onChange={(e) => {
-                    if (e.target.files) {
-                      const fileRef = e.target.files[0] || ""
-                      const fileType: string= fileRef.type || ""
-                      const reader = new FileReader()
-                      reader.readAsBinaryString(fileRef)
-                      reader.onload=(ev: any) => {
-                        setFileBase64(`data:${fileType};base64,${btoa(ev.target.result)}`)
-                      }
-                    }
-                  }
-                  }
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => convertFile(e.target.files)}
                 />
                 <ErrorMessage name="file" component='p'/>
               </label>

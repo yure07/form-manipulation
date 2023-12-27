@@ -1,22 +1,34 @@
-import { useEffect, useState } from "react"
+import styled from "styled-components"
 
-const ShowImage = ({file}: {file: File}) => {
-  const [preview, setPreview] = useState<string>('')
-  
-  useEffect(() => {
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      const urlData = e.target?.result as string
-      setPreview(urlData)
-    }
-    reader.readAsDataURL(file)
-  },[])
+const ContainerImg = styled.div`
+  display: flex;
+  max-width: 300px;
 
+  @media (max-width: 600px){
+    height: 150px;
+  }
+`
+
+const Img = styled.img`
+  width: auto;
+  height: 90%;
+  border-radius: 8px;
+
+  @media (max-width: 768px){
+    height: 70%;
+  }
+
+  @media (max-width: 600px){
+    width: 100%;
+    height: 100%;
+  }
+`
+
+const ShowImage = ({file}: {file: string}) => {
   return(
-    <>
-      <img src={preview} alt='preview-product-img' width="200px" height="200px"/>
-    </>
+    <ContainerImg>
+      <Img src={file} alt='preview-product-img'/>
+    </ContainerImg>
   )
 }
-
 export default ShowImage
