@@ -112,7 +112,8 @@ const FormFormik:React.FC = () => {
 
             if(regex.test(values.name)) errors.name = 'Nome não pode incluir caracteres especiais.'
             else if(value <= 0) errors.value = 'O produto deve custar mais que 0.'
-
+            else if(filebase64 === '') errors.file = 'Necessário imagem'
+            
             return errors
           }}
         >
