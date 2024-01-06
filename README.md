@@ -27,9 +27,9 @@ It is a project to improve skills not just in styled-components, but also to imp
 
 Envisiousing performance and code that not repeat yourself.
 
-In the project the user can, register products that will to an fake API, reared in website [Drona HQ](https://apigenerator.dronahq.com/)
+In the project the user can, register products that will to an Mock API, reared in website [Drona HQ](https://apigenerator.dronahq.com/)
 
-Also see the products list of the fake API in route `/products`.
+Also see the products list of the Mock API in route `/products`.
 
 All the `<input/>` need be filled to send the data.
 
